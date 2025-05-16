@@ -185,7 +185,9 @@ module Ferrum
       end
 
       def parse_json_version(url)
+        original_url = URI(url)
         url = URI.join(url, "/json/version")
+        url.query = original_url.query
 
         if %w[wss ws].include?(url.scheme)
           url.scheme = case url.scheme
